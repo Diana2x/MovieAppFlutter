@@ -10,9 +10,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Welcome to Flutter',
+      debugShowCheckedModeBanner: false,
+      title: 'Mi Primera App Flutter',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
       home: const HomeScreen(),
@@ -26,12 +27,45 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Welcome to Flutter'),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-      ),
-      body: const Center(
-        child: Text('Hello World', style: TextStyle(fontSize: 24)),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          // 🖼️ Fondo de pantalla
+          Image.asset('assets/background.jpg', fit: BoxFit.cover),
+
+          // 🌟 Contenido principal (texto centrado)
+          Container(
+            color: Colors.black.withOpacity(
+              0.4,
+            ), // Sombra para mejor legibilidad
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const [
+                  Text(
+                    'Bienvenido a mi Aplicación',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    'Mi Primera App Flutter',
+                    style: TextStyle(
+                      color: Colors.white70,
+                      fontSize: 22,
+                      fontStyle: FontStyle.italic,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
